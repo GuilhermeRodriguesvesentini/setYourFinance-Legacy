@@ -1,0 +1,31 @@
+.navbar .container h5 {
+    color: white;
+  }
+  .fas {
+    font-size: 15px;;
+  }
+  .container-fluid .nav-item {
+    width: 100%;
+  }
+  .container-fluid .nav-item:hover {
+    background-color: rgb(194, 248, 248);
+    transition: 0.5s ease-in-out;
+  }
+
+  .adicionar_despesas label {
+    font-size: 20px;
+  }
+  .adicionar_despesas input{
+    min-width: 200px;
+    padding: 5px 5px;
+  }
+  .adicionar_despesas__input {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .adicionar_despesas__input .btn {
+    padding: 10px 0;
+  }
+  .adicionar_despesas .container .table tr {
+    text-align: left;
+  }
