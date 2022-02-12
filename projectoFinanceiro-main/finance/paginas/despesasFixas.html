@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Knockout -->
+  <script src="../dist/js/knockout-3.5.1.js"></script>
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -56,8 +60,8 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
+<!--               <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+ -->              <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
                   <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
@@ -72,8 +76,8 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
+<!--               <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+ -->              <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
@@ -88,8 +92,8 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
+<!--               <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+ -->              <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
                   <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
@@ -278,21 +282,22 @@
                       <div class="row">
                           <div class="col-sm-12 col-md-3">
                               <label>Nome:</label>
-                              <input type="text" class="form-control" id="exampleName"/>
+                              <input type="text" class="form-control nome" data-bind="value: despesaInputName"/>
                           </div>
                           <div class="col-sm-12 col-md-3">
                               <label>Data:</label>
-                              <input type="text" class="form-control" id="exampleName"/>
+                              <input type="text" class="form-control vencimento" data-bind="value: despesaInputVencimento"/>
                           </div>
                           <div class="col-sm-12 col-md-3">
                               <label>Valor:</label>
-                              <input type="text" class="form-control" id="exampleName"/>
+                              <input type="text" class="form-control valor" data-bind="value: despesaInputValor"/>
                           </div>
                       </div>
                   </div>
                 </div> 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Adicionar</button>
+                  <button type="submit" class="btn btn-primary" data-bind="click: addDespesa">Adicionar</button>
+                  <button class="btn btn-danger mb-1" data-bind="click: deleteSelected, enable: canEdit">Remover</button>
                 </div>
               </div>
             </div>
@@ -317,18 +322,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="checkbox"></td>
-                            <td>Aluguel</td>
-                            <td>15</td>
-                            <td>1800,00</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>Luz</td>
-                            <td>28</td>
-                            <td>150,00</td>
-                            <td></td>
+                          <td><input type="checkbox" data-bind="value: $data, checked: selectedDespesas" style="min-width: 0;"></td>
+                          <td data-bind="text: $data.nome"></td>
+                          <td data-bind="text: $data.vencimento"></td>
+                          <td data-bind="text: $data.valor" class="valor"></td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -336,7 +333,7 @@
                             <td></td>
                             <td><strong>Total</strong></td>
                             <td></td>
-                            <td><strong>1950,00</strong></td>
+                            <td><strong>R$ 0</strong></td>
                             <td></td>
                         </tr>
                     </tfoot>
@@ -379,5 +376,7 @@
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
+<!-- Knockout -->
+<script src="../dist/js/pages/despesasFixas.js"></script>
 </body>
 </html>
