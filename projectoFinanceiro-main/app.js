@@ -16,7 +16,29 @@ app.get('/financeiro', function(req, res){
     db.financeiro.find(function(err, docs){
         if(err){
             res.send(err);
-        }else {
+        } else {
+            console.log('Getting data...');
+            res.json(docs);
+        }
+    });
+});
+
+app.get('/entradas', function(req, res){
+    db.financeiro.find(function(err, docs){
+        if(err){
+            res.send(err);
+        } else {
+            console.log('Getting data...');
+            res.json(docs);
+        }
+    });
+});
+
+app.get('/despesas', function(req, res){
+    db.financeiro.find(function(err, docs){
+        if(err){
+            res.send(err);
+        } else {
             console.log('Getting data...');
             res.json(docs);
         }
@@ -24,6 +46,28 @@ app.get('/financeiro', function(req, res){
 });
 
 app.post('/financeiro', function(req, res){
+    db.financeiro.insert(req.body, function(err, doc){
+        if(err){
+            res.send(err);
+        } else {
+            console.log('Adding data...');
+            res.json(doc);
+        }
+    });
+});
+
+app.get('/despesas', function(req, res){
+    db.financeiro.insert(function(err, docs){
+        if(err){
+            res.send(err);
+        } else {
+            console.log('Adding data...');
+            res.json(docs);
+        }
+    });
+});
+
+app.post('/despesas', function(req, res){
     db.financeiro.insert(req.body, function(err, doc){
         if(err){
             res.send(err);
